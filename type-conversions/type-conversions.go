@@ -12,5 +12,7 @@ func main() {
 	fmt.Printf("type:%T,value:%v\n", f, f)
 	z := uint(f)
 	fmt.Printf("type:%T,value:%v\n", z, z)
+	b := 3
+	fmt.Printf("type:%T,value:%v\n", b, b)
 
 }
