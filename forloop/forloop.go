@@ -10,4 +10,7 @@ func main() {
 		fmt.Println(i, sum)
 
 	}
+	for {
+		fmt.Println("abc")
+	}
 }
