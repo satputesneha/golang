@@ -7,7 +7,7 @@ func main() {
 	a.min = 60
 	fmt.Printf("%v,%T", a, a)
 	p := &a
-	fmt.Printf("%v", (*p).min)
+	fmt.Printf("%v", p.min)
 
 }
 
