@@ -11,6 +11,8 @@ func main() {
 
 }
 
+/**
+ */
 type StudyHours struct {
 	lang            string
 	min             int
