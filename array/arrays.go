@@ -12,7 +12,11 @@ func main() {
 	}
 	p := &a
 	var b []int = a[1:]
-	fmt.Printf("%T,%v\n", b, b)
+	c := a[3:5]
+	c[0] = 9
+	fmt.Printf("b %T,%v\n", b, b)
+
+	fmt.Printf("c %T,%v\n", c, c)
 
 	fmt.Printf("%T ,%v, %v,%v", a, a, len(a), p[3])
 
