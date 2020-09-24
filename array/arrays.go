@@ -11,6 +11,8 @@ func main() {
 		fmt.Println(i, a[i])
 	}
 	p := &a
+	var b []int = a[1:]
+	fmt.Printf("%T,%v\n", b, b)
 
 	fmt.Printf("%T ,%v, %v,%v", a, a, len(a), p[3])
 
