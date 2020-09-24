@@ -15,4 +15,10 @@ func main() {
 	sliceInfo(s)
 	s = s[2:]
 	sliceInfo(s)
+	var slice []int
+	sliceInfo(slice)
+	fmt.Println(slice == nil)
+	slice1 := make([]int, 100)
+	sliceInfo(slice1)
+
 }
