@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 
@@ -17,10 +20,17 @@ func main() {
 		n[i] = make([]int, len(m[i]))
 		for j := 0; j < len(m[i]); j++ {
 			n[i][j] = m[i][j]
-			fmt.Println(n)
 
 		}
 
 	}
+	n[1] = append(n[1], 99)
+	n[1] = append(n[1], 100)
+	fmt.Println(n[1])
+
+	fmt.Println(n)
+	r := strings.Join([]string{"s", "t", "u"}, "_")
+	fmt.Println(r)
+	fmt.Println(n[2])
 
 }
