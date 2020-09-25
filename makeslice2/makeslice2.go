@@ -16,9 +16,10 @@ func main() {
 	m := [][]int{s1, s2, s3}
 	fmt.Println(m)
 	n := make([][]int, len(m))
-	for i := 0; i < len(m); i++ {
-		n[i] = make([]int, len(m[i]))
-		for j := 0; j < len(m[i]); j++ {
+	//for i := 0; i < len(m); i++ {
+	for i, value := range m {
+		n[i] = make([]int, len(value))
+		for j := 0; j < len(value); j++ {
 			n[i][j] = m[i][j]
 
 		}
