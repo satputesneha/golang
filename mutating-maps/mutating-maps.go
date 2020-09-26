@@ -11,8 +11,11 @@ func main() {
 		"shiva-age":    {"India": 3},
 		"srikanth-age": s,
 	}
+
 	fmt.Println(m)
 	value, exist := m["motba"]
 	fmt.Println(value, exist)
+	m["shiva-age"]["India"] = 30
+	fmt.Println(m)
 
 }
