@@ -9,12 +9,14 @@ func main() {
 	fmt.Println(n1.size())
 	var p phone
 	p = &s1
+	fmt.Printf("type:%T,value:%v", p, p)
 	fmt.Println(p.size())
 	p = &n1
+	fmt.Printf("type:%T,value:%v", p, p)
 	fmt.Println(p.size())
-	a1 := apple{length: 50, width: 30}
-	fmt.Println(a1.size())
-	p = &a1
+	var a *apple
+	p = a
+	fmt.Printf("type:%T,value:%v", p, p)
 
 }
 
