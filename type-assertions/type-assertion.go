@@ -13,6 +13,13 @@ func main() {
 		fmt.Println(i.(string))
 	}
 	fmt.Println(i.(int))
+	switch i.(type) {
+	case int:
+		fmt.Println(i.(int))
+	case string:
+		fmt.Println(i.(string))
+
+	}
 	fmt.Println("the end")
 
 }
