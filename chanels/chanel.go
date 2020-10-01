@@ -18,6 +18,8 @@ func main() {
 	fmt.Println("9")
 
 	fmt.Println(<-d)
+	fmt.Println(<-d)
+
 	fmt.Println("Hello")
 
 }
