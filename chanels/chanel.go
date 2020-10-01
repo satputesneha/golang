@@ -17,7 +17,7 @@ func main() {
 	intchan(9, d)
 	fmt.Println("9")
 
-	//fmt.Println(<-d)
+	fmt.Println(<-d)
 	fmt.Println("Hello")
 
 }
