@@ -20,7 +20,7 @@ func calc(i int) {
 }
 
 func main() {
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 100; i++ {
 		go calc(i)
 	}
 	time.Sleep(3 * time.Second)
