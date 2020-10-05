@@ -14,7 +14,7 @@ func (e *MyError2) Error() string {
 
 func run() error {
 	return &MyError2{
-		"it didn't work",
+		"It didn't work",
 	}
 }
 
