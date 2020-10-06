@@ -10,14 +10,21 @@ type MyError struct {
 	What string
 }
 
+type MyError2 struct {
+	What string
+}
+
 func (e *MyError) Error() string {
 	return fmt.Sprintf("at %v, %s",
 		e.When, e.What)
 }
 
+func (e *MyError2) Error() string {
+	return fmt.Sprintf("you got error: %s", e.What)
+}
+
 func run() error {
-	return &MyError{
-		time.Now(),
+	return &MyError2{
 		"it didn't work",
 	}
 }
