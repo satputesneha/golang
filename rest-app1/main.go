@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -12,14 +11,14 @@ import (
 func YourHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	s := fmt.Sprintf("<html><h1>Super Market</h1>hello Rest API %v\n</html>", vars)
-	time.Sleep(10 * time.Second)
+
 	w.Write([]byte(s))
 }
 
 func main() {
 	r := mux.NewRouter()
 	// Routes consist of a path and a handler function.
-	r.HandleFunc("/products/{key1}/{key2}", YourHandler)
+	r.HandleFunc("/products/{key1}/{key2}", YourHandler).Methods("GET")
 	r.HandleFunc("/category/{catname1}", YourHandler)
 	r.HandleFunc("/shopping-list/{shoplistnuum:[0-9]+}", YourHandler)
 
