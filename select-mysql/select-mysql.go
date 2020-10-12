@@ -27,7 +27,7 @@ func main() {
 		fmt.Println(id, name, host)
 	}
 
-	rows, err = db.Query("insert into events_db.events(id, Name, Host) values(5,'Hourly_meeting','David Johnson')")
+	rows, err = db.Query("replace into events_db.events(id, Name, Host) values(5,'Hourly_meeting','David Johnson')")
 	if err != nil {
 		fmt.Println(err)
 	}
