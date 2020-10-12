@@ -16,13 +16,15 @@ func main() {
 		fmt.Println("connected to db")
 	}
 	defer db.Close()
-	row := db.QueryRow("select * from events where id=3")
+	rows, err := db.Query("select * from events ")
 	var id int
 	var name, host string
-	err = row.Scan(&id, &name, &host)
-	if err != nil {
-		fmt.Println(err)
+	for rows.Next() {
+		err = rows.Scan(&id, &name, &host)
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(id, name, host)
 	}
-	fmt.Println(id, name, host)
 
 }
