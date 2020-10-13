@@ -13,11 +13,11 @@ func main() {
 	fmt.Println("Welcome to rest app")
 
 	app := &restApp{}
-	app.initialise()
+	app.Initialise()
 
 	r := mux.NewRouter()
-	r.HandleFunc("/events/{event_id}", app.eventHandler)
+	r.HandleFunc("/events/{event_id}", app.EventHandler)
 	log.Fatal(http.ListenAndServe(":8000", r))
 
-	defer app.teardown()
+	defer app.Teardown()
 }

@@ -19,7 +19,7 @@ type restApp struct {
 	db *sql.DB
 }
 
-func (app *restApp) eventHandler(w http.ResponseWriter, r *http.Request) {
+func (app *restApp) EventHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	rows, err := app.db.Query("select * from events where id=" + params["event_id"])
 	e := Event{}
@@ -33,7 +33,7 @@ func (app *restApp) eventHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&e)
 }
 
-func (app *restApp) initialise() {
+func (app *restApp) Initialise() {
 	var err error
 	app.db, err = sql.Open("mysql", "root:yourpassword@tcp(127.0.0.1:3306)/events_db")
 	if err != nil {
@@ -41,6 +41,6 @@ func (app *restApp) initialise() {
 	}
 }
 
-func (app *restApp) teardown() {
+func (app *restApp) Teardown() {
 	app.db.Close()
 }
