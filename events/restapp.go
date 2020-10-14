@@ -40,6 +40,7 @@ func (app *restApp) Initialise() {
 	if err != nil {
 		panic(err)
 	}
+	app.InitialiseHandlers()
 }
 
 func (app *restApp) InitialiseHandlers() {

@@ -13,7 +13,7 @@ func main() {
 
 	app := &restApp{}
 	app.Initialise()
-	app.InitialiseHandlers()
+
 	log.Fatal(http.ListenAndServe(":8000", app.r))
 
 	defer app.Teardown()
