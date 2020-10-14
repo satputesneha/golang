@@ -17,6 +17,7 @@ type Event struct {
 
 type restApp struct {
 	db *sql.DB
+	r  *mux.Router
 }
 
 func (app *restApp) EventHandler(w http.ResponseWriter, r *http.Request) {
@@ -39,6 +40,11 @@ func (app *restApp) Initialise() {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func (app *restApp) InitialiseHandlers() {
+	app.r = mux.NewRouter()
+	app.r.HandleFunc("/events/{event_id}", app.EventHandler)
 }
 
 func (app *restApp) Teardown() {

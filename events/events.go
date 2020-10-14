@@ -6,7 +6,6 @@ import (
 	"net/http"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/gorilla/mux"
 )
 
 func main() {
@@ -14,10 +13,8 @@ func main() {
 
 	app := &restApp{}
 	app.Initialise()
-
-	r := mux.NewRouter()
-	r.HandleFunc("/events/{event_id}", app.EventHandler)
-	log.Fatal(http.ListenAndServe(":8000", r))
+	app.InitialiseHandlers()
+	log.Fatal(http.ListenAndServe(":8000", app.r))
 
 	defer app.Teardown()
 }
