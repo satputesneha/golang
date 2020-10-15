@@ -40,10 +40,10 @@ func (app *restApp) Initialise() {
 	if err != nil {
 		panic(err)
 	}
-	app.InitialiseHandlers()
+	app.initialiseHandlers()
 }
 
-func (app *restApp) InitialiseHandlers() {
+func (app *restApp) initialiseHandlers() {
 	app.r = mux.NewRouter()
 	app.r.HandleFunc("/events/{event_id}", app.EventHandler)
 }
