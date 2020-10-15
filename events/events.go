@@ -33,7 +33,15 @@ func eventHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(fmt.Sprintf("sneha %v", params)))
 }
 
+var db *sql.DB
+
 func main() {
+	db, err := sql.Open("mysql", "root:yourpassword@tcp(127.0.0.1:3306)/events_db")
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
 	r := mux.NewRouter()
 	r.HandleFunc("/events/{event_id}", eventHandler)
 	fmt.Println("hello world")
