@@ -50,7 +50,6 @@ func getPost(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	router := mux.NewRouter()
-	posts = append(posts, Post{ID: 1, Title: "My first post", Body: "This is the content of my first post"})
 
 	router.HandleFunc("/posts/{sneha}", getPost).Methods("GET")
 
