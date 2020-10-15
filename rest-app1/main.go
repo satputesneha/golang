@@ -19,7 +19,7 @@ func main() {
 	r := mux.NewRouter()
 	// Routes consist of a path and a handler function.
 	r.HandleFunc("/products/{key1}/{key2}", YourHandler).Methods("GET")
-	r.HandleFunc("/category/{catname1}", YourHandler)
+	r.HandleFunc("/category/{sneha}", YourHandler)
 	r.HandleFunc("/shopping-list/{shoplistnuum:[0-9]+}", YourHandler)
 
 	// Bind to a port and pass our router in
