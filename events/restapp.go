@@ -3,7 +3,7 @@ package main
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -26,6 +26,11 @@ type Users struct {
 	Country string `json:"country"`
 	Age     int    `json:"age"`
 }
+type Registration struct {
+	RegID   int    `json:"id"`
+	EventID int    `json:"event_id"`
+	UserID  string `json:"user_id"`
+}
 
 func (app *restApp) EventHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
@@ -41,21 +46,34 @@ func (app *restApp) EventHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&e)
 }
 func (app *restApp) UserHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("welcome ")
+	log.Println("welcome UserHandler")
 	params := mux.Vars(r)
 	rows, err := app.db.Query("select user_id,Name,Country,Age  from users where user_id=?", params["user_id"])
 	u := Users{}
-	fmt.Println("one")
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		json.NewEncoder(w).Encode(&u)
 		return
 	}
 	rows.Next()
-	fmt.Println("three")
 
 	rows.Scan(&u.UserID, &u.Name, &u.Country, &u.Age)
 	json.NewEncoder(w).Encode(&u)
+}
+func (app *restApp) RegHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("welcome to RegHandler")
+	params := mux.Vars(r)
+	rows, err := app.db.Query("select reg_id,event_id,user_id from registration where user_id =?", params["user_id"])
+	reg := Registration{}
+	if err != nil {
+		log.Println(err)
+		json.NewEncoder(w).Encode(&reg)
+		return
+	}
+	rows.Next()
+	rows.Scan(&reg.RegID, &reg.EventID, &reg.UserID)
+	json.NewEncoder(w).Encode(&reg)
+
 }
 
 func (app *restApp) Initialise() {
@@ -71,6 +89,7 @@ func (app *restApp) initialiseHandlers() {
 	app.r = mux.NewRouter()
 	app.r.HandleFunc("/events/{event_id}", app.EventHandler)
 	app.r.HandleFunc("/users/{user_id}", app.UserHandler)
+	app.r.HandleFunc("/registration/{user_id}", app.RegHandler)
 }
 
 func (app *restApp) Teardown() {
