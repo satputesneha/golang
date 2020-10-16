@@ -21,7 +21,7 @@ type restApp struct {
 	r  *mux.Router
 }
 type Users struct {
-	User_id string `json:"id"`
+	UserID  string `json:"id"`
 	Name    string `json:"name"`
 	Country string `json:"country"`
 	Age     int    `json:"age"`
@@ -43,7 +43,7 @@ func (app *restApp) EventHandler(w http.ResponseWriter, r *http.Request) {
 func (app *restApp) UserHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("welcome ")
 	params := mux.Vars(r)
-	rows, err := app.db.Query("select * from users where user_id=\"" + params["user_id"] + "\"")
+	rows, err := app.db.Query("select user_id,Name,Country,Age  from users where user_id=?", params["user_id"])
 	u := Users{}
 	fmt.Println("one")
 	if err != nil {
@@ -54,7 +54,7 @@ func (app *restApp) UserHandler(w http.ResponseWriter, r *http.Request) {
 	rows.Next()
 	fmt.Println("three")
 
-	rows.Scan(&u.User_id, &u.Name, &u.Country, &u.Age)
+	rows.Scan(&u.UserID, &u.Name, &u.Country, &u.Age)
 	json.NewEncoder(w).Encode(&u)
 }
 
