@@ -75,6 +75,27 @@ func (app *restApp) RegHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&reg)
 
 }
+func (app *restApp) AllRegHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("welcome to AllRegHandler")
+	params := mux.Vars(r)
+	rows, err := app.db.Query("select reg_id,event_id,user_id from registration where user_id =?", params["user_id"])
+	reg := Registration{}
+	if err != nil {
+		log.Println(err)
+		json.NewEncoder(w).Encode(&reg)
+		return
+	}
+	allreg := make([]Registration, 0)
+
+	for rows.Next() {
+		rows.Scan(&reg.RegID, &reg.EventID, &reg.UserID)
+		allreg = append(allreg, reg)
+
+	}
+
+	json.NewEncoder(w).Encode(&allreg)
+
+}
 
 func (app *restApp) Initialise() {
 	var err error
@@ -90,6 +111,7 @@ func (app *restApp) initialiseHandlers() {
 	app.r.HandleFunc("/events/{event_id}", app.EventHandler)
 	app.r.HandleFunc("/users/{user_id}", app.UserHandler)
 	app.r.HandleFunc("/registration/{user_id}", app.RegHandler)
+	app.r.HandleFunc("/allreg/{user_id}", app.AllRegHandler)
 }
 
 func (app *restApp) Teardown() {
