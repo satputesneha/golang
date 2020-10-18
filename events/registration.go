@@ -8,6 +8,12 @@ import (
 	"github.com/gorilla/mux"
 )
 
+type Registration struct {
+	RegID   int    `json:"id"`
+	EventID int    `json:"event_id"`
+	UserID  string `json:"user_id"`
+}
+
 func (app *restApp) RegHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("welcome to RegHandler")
 	params := mux.Vars(r)
