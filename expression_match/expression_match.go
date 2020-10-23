@@ -4,8 +4,8 @@ import "fmt"
 
 func main() {
 	fmt.Println("***")
-	fmt.Println(checkb("{[()]}"))
-	fmt.Println(checkb("{[[)]}"))
+	fmt.Println(checkd("{[()]}"))
+	fmt.Println(checkd("{[[)]}"))
 
 }
 
@@ -70,6 +70,65 @@ func checkb(photo string) bool {
 
 		}
 		fmt.Println(person, stack)
+	}
+	return true
+}
+
+func checkc(photo string) bool {
+	m := make(map[string]string)
+	stack := make([]string, 0)
+	m["{"] = "}"
+	m["("] = ")"
+	m["["] = "]"
+	for i := 0; i < len(photo); i++ {
+		person := string(photo[i])
+		_, exists := m[person]
+		if exists {
+			stack = append(stack, person)
+		} else {
+			if len(stack) == 0 {
+				return false
+			}
+			top := stack[len(stack)-1]
+			if person == m[top] {
+				stack = stack[:len(stack)-1]
+			} else {
+				return false
+			}
+
+		}
+		fmt.Println(person, stack)
+	}
+
+	return true
+}
+
+func checkd(photo string) bool {
+	m := make(map[string]string)
+	stack := make([]string, 0)
+	m["("] = ")"
+	m["{"] = "}"
+	m["["] = "]"
+	for i := 0; i < len(photo); i++ {
+		person := string(photo[i])
+		_, exists := m[person]
+		if exists {
+			stack = append(stack, person)
+
+		} else {
+			top := stack[len(stack)-1]
+			if person == m[top] {
+				stack = stack[:len(stack)-1]
+			} fg/nm,l;op;[]æ
+			 nmkl;'
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			?≥'
 	}
 	return true
 }

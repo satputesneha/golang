@@ -13,7 +13,7 @@ type Event struct {
 	Host  string `json:"host"`
 }
 
-func (app *restApp) EventHandler(w http.ResponseWriter, r *http.Request) {
+func (app *RestApp) EventHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	rows, err := app.db.Query("select * from events where id=" + params["event_id"])
 	e := Event{}

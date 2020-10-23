@@ -14,7 +14,7 @@ type Registration struct {
 	UserID  string `json:"user_id"`
 }
 
-func (app *restApp) RegHandler(w http.ResponseWriter, r *http.Request) {
+func (app *RestApp) RegHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("welcome to RegHandler")
 	params := mux.Vars(r)
 	rows, err := app.db.Query("select reg_id,event_id,user_id from registration where user_id =?", params["user_id"])
@@ -29,7 +29,7 @@ func (app *restApp) RegHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&reg)
 
 }
-func (app *restApp) AllRegByEventHandler(w http.ResponseWriter, r *http.Request) {
+func (app *RestApp) AllRegByEventHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("welcome to AllRegByEventHandler")
 	params := mux.Vars(r)
 	rows, err := app.db.Query("select reg_id,event_id,user_id from registration where event_id =?", params["event_id"])
@@ -49,7 +49,7 @@ func (app *restApp) AllRegByEventHandler(w http.ResponseWriter, r *http.Request)
 	json.NewEncoder(w).Encode(&allregbyevent)
 }
 
-func (app *restApp) AllRegHandler(w http.ResponseWriter, r *http.Request) {
+func (app *RestApp) AllRegHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("welcome to AllRegHandler")
 	params := mux.Vars(r)
 	rows, err := app.db.Query("select reg_id,event_id,user_id from registration where user_id =?", params["user_id"])
